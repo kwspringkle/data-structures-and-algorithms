@@ -84,4 +84,11 @@ void addBefore(int u, int v) {
 }
 
 int main(){
+	int n;
+    scanf("%d", &n);
+    for(int i = n; i > 0; i--){
+        insertLast(i);
+    }
+    printListLeft2Right();
+    printListRight2Left();
 }
