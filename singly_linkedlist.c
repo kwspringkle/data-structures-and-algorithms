@@ -154,4 +154,10 @@ int main() {
     head = removeBigger(head, v);
     head = reverseNode(head);
     printlist(head);
+//Thu hồi danh sách
+    while(head !=NULL){
+	    Node * tmp = head;
+	    head = head -> next;
+	    free(tmp);
+    }
 }
