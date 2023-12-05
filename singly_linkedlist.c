@@ -116,10 +116,9 @@ Node *removeBigger(Node *head, int v) {
 
     while (q != NULL && q->next != NULL) {
         if (q->next->value > v) {
-            Node *pq = prev(head, q->next);
-            Node *q2 = q->next;
-            pq->next = q2->next;
-            free(q2);
+            Node * tmp = q -> next;
+	    q -> next = tmp -> next;
+		free(tmp);
         } else {
             q = q->next;
         }
