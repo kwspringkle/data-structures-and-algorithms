@@ -1,4 +1,4 @@
-//Các thuật toán sắp xếp
+//Các thuật toán sắp xếp: insertion sort, selection sort và cách tạo cmp cho qsort. Sử dụng hàm qsort từ thư viện chuẩn
 
 #include <stdio.h>
 #include <stdlib.h>
