@@ -12,7 +12,7 @@ struct tree {
 
 typedef struct tree  node;
 
-//Tao node moi
+//Create newnode
 node * makenode(int x){
 	node * newnode = malloc(sizeof(node));
 	newnode -> value = x;
@@ -23,13 +23,13 @@ node * makenode(int x){
 
 node * root;
 
-//Chon node lam root
+//Choose a node and turn it into a root
 void makeroot(int x){
 	root = makenode(x);
 }
 
 
-//Chen node moi vao cay nhi phan
+//Insert new node to binary tree
 node * insert(node * root, int x){
 	if(root == NULL) return makenode(x);
 	if(x < root -> value){
@@ -40,7 +40,7 @@ node * insert(node * root, int x){
 	return root;
 }
 
-//Duyet cay thu tu truoc
+//Pre-order
 void printtree_preorder(node * root){
 	if(root != NULL){
 		printf("%d ", root -> value);
@@ -49,7 +49,7 @@ void printtree_preorder(node * root){
 	}
 }
 
-//Duyet cay thu tu giua
+//In-order
 void printtree_inorder(node * root){
 	if(root != NULL){
 		printtree_inorder(root -> left);
@@ -58,7 +58,7 @@ void printtree_inorder(node * root){
 	}
 }
 
-//Duyet cay thu tu sau
+//Post-order
 void printtree_postorder(node * root){
 	if(root != NULL){
 		printtree_postorder(root -> left);
@@ -67,14 +67,14 @@ void printtree_postorder(node * root){
 	}
 }
 
-//Check xem 1 node co la la khong
+//Check whether the node is a leaf or not
 int isleaf(node * leaf){
 	if(leaf == NULL) return 0;
 	if(leaf -> left == NULL && leaf -> right == NULL) return 1;
 	else return 0;
 }
 
-//Dem so la cua 1 cay
+//Count leaves of the binary tree
 int countleaves(node * leaf){
 	if(leaf == NULL) return 0;
 	if(isleaf(leaf)) return 1;
@@ -87,20 +87,20 @@ int max(int a, int b){
 	else return a;
 }
 
-//Tinh do cao cua cay nhi phan
+//Calculate the height of the binary tree
 int treelevel(node * x){
 	if(x == NULL) return -1;
 	return 1 + max(treelevel(x -> left), treelevel(x -> right));
 }
 
-//Kiem tra xem cay nhi phan co la cay AVL khong
+//Check if the tree is AVL tree or not
 int checkAVL(node * x){
 	if(x == NULL) return 1;
 	if(abs(treelevel(x -> left) - treelevel(x -> right)) > 1) return 0;
 	else return checkAVL(x -> left) && checkAVL(x -> right);
 }
 
-//Tim kiem tren cay nhi phan node co gia tri x
+//Fint nodes of the binary tree that have value = x (this func can be used for N-ary tree)
 node *find (node * root, int x){
     if(root == NULL) return NULL;
     if(root -> value == x) return root;
@@ -113,7 +113,7 @@ node *find (node * root, int x){
     return NULL;
 }
 
-//Dem so node cua 1 cay
+//Count num_node of the binary tree (this func can be used for N-ary tree)
 int count(node * root){
     if(root == NULL) return 0;
     int count = 1;
@@ -125,7 +125,7 @@ int count(node * root){
     return count;
 }
 
-//Tra ve cha cua 1 node
+//Return the parent of the node p
 node * parent(node * p, node * root){
     if(root == NULL) return NULL;
     node * q = root -> left;
@@ -138,7 +138,7 @@ node * parent(node * p, node * root){
     return NULL;
 }
 
-//Ky thuat xoay phai bien cay nhi phan lech trai thanh cay AVL
+//Rotate right,  change bTree to AVL tree
 node *turnRight(node *a){
 	node *b = a->left;
 	node *d = b->right;
@@ -147,7 +147,7 @@ node *turnRight(node *a){
 	return b;
 }
 
-//Ky thuat xoay trai bien cay nhi phan lech phai thanh cay AVL
+//Rotate left,  change bTree to AVL tree
 node *turnLeft(node *a){
 	node *b = a->right;
 	node *c = b->left;
@@ -158,7 +158,6 @@ node *turnLeft(node *a){
 
 
 int main(){
-//Kiem thu ham
 	int n;
 	scanf("%d", &n);
 	int r;
