@@ -12,6 +12,7 @@ struct tree {
 
 typedef struct tree  node;
 
+//Tao node moi
 node * makenode(int x){
 	node * newnode = malloc(sizeof(node));
 	newnode -> value = x;
@@ -22,10 +23,13 @@ node * makenode(int x){
 
 node * root;
 
+//Chon node lam root
 void makeroot(int x){
 	root = makenode(x);
 }
 
+
+//Chen node moi vao cay nhi phan
 node * insert(node * root, int x){
 	if(root == NULL) return makenode(x);
 	if(x < root -> value){
@@ -36,6 +40,7 @@ node * insert(node * root, int x){
 	return root;
 }
 
+//Duyet cay thu tu truoc
 void printtree_preorder(node * root){
 	if(root != NULL){
 		printf("%d ", root -> value);
@@ -44,6 +49,7 @@ void printtree_preorder(node * root){
 	}
 }
 
+//Duyet cay thu tu giua
 void printtree_inorder(node * root){
 	if(root != NULL){
 		printtree_inorder(root -> left);
@@ -52,6 +58,7 @@ void printtree_inorder(node * root){
 	}
 }
 
+//Duyet cay thu tu sau
 void printtree_postorder(node * root){
 	if(root != NULL){
 		printtree_postorder(root -> left);
@@ -60,34 +67,40 @@ void printtree_postorder(node * root){
 	}
 }
 
+//Check xem 1 node co la la khong
 int isleaf(node * leaf){
 	if(leaf == NULL) return 0;
 	if(leaf -> left == NULL && leaf -> right == NULL) return 1;
 	else return 0;
 }
 
+//Dem so la cua 1 cay
 int countleaves(node * leaf){
 	if(leaf == NULL) return 0;
 	if(isleaf(leaf)) return 1;
 	else return countleaves(leaf -> left) + countleaves(leaf -> right);
 }
 
+
 int max(int a, int b){
 	if(a < b) return b;
 	else return a;
 }
 
+//Tinh do cao cua cay nhi phan
 int treelevel(node * x){
 	if(x == NULL) return -1;
 	return 1 + max(treelevel(x -> left), treelevel(x -> right));
 }
 
+//Kiem tra xem cay nhi phan co la cay AVL khong
 int checkAVL(node * x){
 	if(x == NULL) return 1;
 	if(abs(treelevel(x -> left) - treelevel(x -> right)) > 1) return 0;
 	else return checkAVL(x -> left) && checkAVL(x -> right);
 }
 
+//Tim kiem tren cay nhi phan node co gia tri x
 node *find (node * root, int x){
     if(root == NULL) return NULL;
     if(root -> value == x) return root;
@@ -100,6 +113,7 @@ node *find (node * root, int x){
     return NULL;
 }
 
+//Dem so node cua 1 cay
 int count(node * root){
     if(root == NULL) return 0;
     int count = 1;
@@ -111,6 +125,7 @@ int count(node * root){
     return count;
 }
 
+//Tra ve cha cua 1 node
 node * parent(node * p, node * root){
     if(root == NULL) return NULL;
     node * q = root -> left;
@@ -123,6 +138,7 @@ node * parent(node * p, node * root){
     return NULL;
 }
 
+//Ky thuat xoay phai bien cay nhi phan lech trai thanh cay AVL
 node *turnRight(node *a){
 	node *b = a->left;
 	node *d = b->right;
@@ -131,6 +147,7 @@ node *turnRight(node *a){
 	return b;
 }
 
+//Ky thuat xoay trai bien cay nhi phan lech phai thanh cay AVL
 node *turnLeft(node *a){
 	node *b = a->right;
 	node *c = b->left;
@@ -141,6 +158,7 @@ node *turnLeft(node *a){
 
 
 int main(){
+//Kiem thu ham
 	int n;
 	scanf("%d", &n);
 	int r;
