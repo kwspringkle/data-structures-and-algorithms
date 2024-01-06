@@ -34,7 +34,7 @@ node * insert(node * root, int x){
 	if(root == NULL) return makenode(x);
 	if(x < root -> value){
 		root -> left = insert(root -> left, x);
-	} else if(x >= root -> value){
+	} else if(x > root -> value){
 		root -> right = insert(root -> right, x);
 	}
 	return root;
