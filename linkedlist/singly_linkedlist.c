@@ -62,6 +62,19 @@ Node *prev(Node *head, Node *p) {
     return q;
 }
 
+//Trả về node với giá trị tham chiếu index
+Node *find(Node *head, int index) {
+    int count = -1;
+    Node *q = head;
+    while (q != NULL) {
+        count++;
+        if (count == index) {
+            return q;
+        }
+        q = q->next;
+    }
+    return NULL;
+}
 // Chèn vào trước 1 node
 Node *insertBefore(Node *head, Node *p, int x) {
     Node *pp = prev(head, p);
