@@ -13,7 +13,7 @@ Node * tail = NULL;
 //Hàm tạo node mới
 Node * makeNode(int x){
 	Node * newNode = malloc(sizeof(Node));
-	newNode -> value = v;
+	newNode -> value = x;
 	newNode -> prev = NULL;
 	newNode -> next = NULL;
 	return newNode;
@@ -53,7 +53,7 @@ void printListLeft2Right(){
 
 // Hàm hiển thị toàn bộ danh sách từ tail đến head
 void printListRight2Left(){
-    for(Node* current = tail; current != NULL; current = current->previous)
+    for(Node* current = tail; current != NULL; current = current->prev)
         printf("%d ", current->value);
     printf("\n");    
 }
