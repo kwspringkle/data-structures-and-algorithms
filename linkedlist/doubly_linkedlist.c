@@ -92,6 +92,8 @@ void addBefore(int u, int v) {
     foundNode->prev = newNode;
 }
 
+
+//Tìm node biết chỉ số
 Node* findNode_by_index(int index) {
     int count = -1;
     Node* q = head;
@@ -105,6 +107,7 @@ Node* findNode_by_index(int index) {
     return NULL;
 }
 
+//Tìm node trước đó
 Node* prev(Node* p) {
     Node* q = head;
     while (q != NULL) {
@@ -116,13 +119,13 @@ Node* prev(Node* p) {
     return NULL;
 }
 
+//Chèn 1 node theo chỉ số
 void addAt(int index, int v, int size) {
     Node* newnode = makeNode(v);
     if (index == 0) {
         insertfirst(v);
     } else if (index == size) {
         insertlast(v);
-        size++;
     } else {
         Node* curr = findNode_by_index(index);
         Node* prevcurr = prev(curr);
@@ -132,7 +135,46 @@ void addAt(int index, int v, int size) {
         prevcurr->next = newnode;
     }
 }
-
+//Xóa phần tử đầu tiên
+void deletefirst(){
+    if(head == NULL) return;
+    Node * q = head;
+    head = head -> next;
+    if(head != NULL){
+        head -> prev = NULL;
+    } else {
+        tail = NULL;
+    }
+    free(q);
+}
+//Xóa phần tử cuối cùng
+void deletelast(){
+    if(tail == NULL) return;
+    Node * q = tail;
+    tail = tail -> prev;
+    if(tail != NULL){
+        tail -> next = NULL;
+    } else{
+        head = NULL;
+    }
+    free(q);
+}
+//Xóa phần tử theo chỉ số
+void deleteAt(int index, int size){
+    
+    if(index == 0){
+        deletefirst();
+    } else if (index == size){
+        deletelast();
+    } else{
+        Node * p = findNode_by_index(index);
+        Node * pp = prev(p);
+        Node * tmp = p;
+        pp -> next = p -> next;
+        p -> next -> prev = pp;
+        free(tmp);
+    }
+}
 int main() {
     int n;
     scanf("%d", &n);
@@ -141,10 +183,7 @@ int main() {
         scanf("%d", &x);
         insertlast(x);
     }
-    int index;
-    int v;
-    scanf("%d %d", &index, &v);
-    addAt(index, v, n);
+    int index; scanf("%d", &index);
+    deleteAt(index, n);
     printListLeft2Right();
-    return 0;
 }
