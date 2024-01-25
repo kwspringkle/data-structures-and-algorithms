@@ -6,16 +6,16 @@
 
 
 //Insertion sort: O(n^2)
-void insertionsort(int * a, int size){
-	//index đi từ 0 đến N-1
-	for(int k = 1; k <= size; k++){
-		int last = a[k];
-		int j = k;
-		while(j > 0 && a[j-1] < last){ // giảm dần, nếu tăg dần thì a[j-1] > last			a[j] = a[j-1];
-			j--;
-		}
-		a[j] = last;
-	}
+void insertionsort(int arr[], int leng) {
+  for (int step = 1; step < leng; step++) {
+    int key = arr[step];
+    int j = step - 1;
+    while (key < arr[j] && j >= 0) {
+      arr[j + 1] = arr[j];
+      --j;
+    }
+    arr[j + 1] = key;
+  }
 }
 
 //Selectionsort
