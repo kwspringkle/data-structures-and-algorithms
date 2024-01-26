@@ -91,17 +91,23 @@ void printArray(int A[], int size) {
 }
 
 // Hàm main để kiểm thử
+#define MAX 100000
 int main() {
-	int n;
-	scanf("%d", &n);
-	int a[n];
-	for(int i = 0; i < n; i++){
-		scanf("%d", &a[i]);
-	}
-    int a_size = sizeof(a) / sizeof(a[0]);
-    mergeSort(a, 0, a_size - 1);
-    printArray(a, a_size);
-    return 0;
+    char k = '\n';
+    int arr[MAX];
+    int count = 0;
+    
+    while(1){
+        if(scanf("%d", &arr[count]) == EOF) break;
+        count++;
+        if(getchar() == k) break;
+    }
+    
+
+    mergesort(arr, 0, count - 1);  // Fix: Correct the range
+    int f;
+    scanf("%d", &f);
+    printf("%d", arr[f - 1]);
 }
 
 
